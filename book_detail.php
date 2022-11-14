@@ -17,11 +17,16 @@
  }
 
   ?>
-  <br/> <br/>
   <h2><?= $name?></h2>
   <p>작가: <?= $author?> </p>
 
   <form method="POST" action="reading.php"><!-- 읽기 -->
     <input type="hidden" name="bid" value="<?= $bid ?>"/>
     <p> <input type="submit" value="읽기"/> </p>
+  </form>
+
+  <form method="POST" action="book_like.php"><!-- 찜 -->
+    <input type="hidden" name="bid" value="<?= $bid ?>"/>
+    <input type="hidden" name="id" value="<?= $id ?>"/>
+    <p> <input type="submit" value="찜"/> </p>
   </form>
