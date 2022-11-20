@@ -36,5 +36,17 @@
       echo "<script>alert('출석을 완료하였습니다.');</script>";
       header("Refresh: 0; URL=attendance.php");
     }
+  }else{//처음 출석하는 경우
+    $counts = 1;
+    $query = "INSERT INTO ATTEND (ID, COUNTS, ATTEND_DATE)
+            VALUES (:id, :counts, :today)";
+    $stmt = $conn -> prepare($query);
+    $stmt->bindParam(':id',$id);
+    $stmt->bindParam(':counts',$counts);
+    $stmt->bindParam(':today',$today);
+    $stmt -> execute();
+
+    echo "<script>alert('출석을 완료하였습니다.');</script>";
+    header("Refresh: 0; URL=attendance.php");
   }
 ?>
