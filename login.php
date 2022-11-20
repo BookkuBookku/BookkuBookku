@@ -36,20 +36,37 @@
   }
 ?>
 
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title> 북꾸북꾸 - Login</title>
+    <meta charset="utf-8" />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link href=".\css\login.css" rel="stylesheet" type="text/css" />
   </head>
-
-  <body>
-    <form method="POST">
-      <p> 북꾸북꾸 </p>
-      <p> ID: <input  type="text" name="login_id" placeholder="id(e-mail)"/></p>
-      <p> Password: <input  type="password" name="pwd" placeholder="Password"/></p>
-      <input type="submit" value="Login" />
-    </form>
-    <p> <a  href="signup.php">회원가입</a></p>
-  </body>
-</html>
+<body>
+<div class="sidenav">
+         <div class="login-main-text" style="text-align : right;">
+            <img src=".\assets\BookkubBookku_logo_v.png" alt="Logo" width="195" height="245">
+         </div>
+      </div>
+      <div class="main">
+         <div class="col-md-6 col-sm-12">
+            <div class="login-form">
+              <form method="POST">
+                  <div class="form-group">
+                     <label>ID</label>
+                     <input type="text" class="form-control" name="login_id" placeholder="ID (e-mail)">
+                  </div>
+                  <div class="form-group">
+                     <label>Password</label>
+                     <input type="password" class="form-control" name="pwd" placeholder="Password">
+                  </div>
+                    <button type="submit" class="btn btn-black">Login</button>
+              </form>
+                    <button type="submit" class="btn btn-secondary" onclick="location.href='signup.php'">Register</button>
+            </div>
+         </div>
+      </div>
+</body>
+</html>  
