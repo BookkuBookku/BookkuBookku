@@ -12,14 +12,15 @@
 
  while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){//결과를 출력한다.
    $pid = $row['PID'];
-   $book_name = $row['NAME'];
+   $book_name = $row['BOOK_NAME'];
    $bid = $row['BID'];
    $author = $row['AUTHOR'];
    $route = $row['ROUTE'];
+   $name = $row['NAME'];
  ?>
    <p> <a href="book_detail.php?bid=<?=$bid?>"> <?= $book_name?> </a></p>
    <p>작가: <?= $author?> </p>
-   <p>글쓴이: <?= $author?> </p>
+   <p>글쓴이: <?= $name?> </p>
    <?php
    //파일 열기
    $fp = fopen($route, "r") or die("문장을 불러올 수 없습니다.");
