@@ -14,7 +14,7 @@
   $id = $_POST['id'];
   $today = date("Y-m-d");
 
-  $query = "SELECT ATTEND_DATE
+  $query = "SELECT ATTEND_DATE, COUNTS
          FROM ATTEND
          WHERE ID = ?";
 
@@ -23,12 +23,13 @@
 
   if (!empty($row = $stmt -> fetch(PDO::FETCH_ASSOC))){
     $date = $row['ATTEND_DATE'];
+    $counts = $row['COUNTS'];
     if(date("y/m/d") == $date){
       echo "<script>alert('이미 출석을 하셨습니다!');</script>";
       header("Refresh: 0; URL=attendance.php");
     }else{
-      //작동 안됨
-      $query1 = "UPDATE ATTEND SET ATTEND_DATE = '$today' WHERE ID = '$id'";
+      $counts = $counts+1;
+      $query1 = "UPDATE ATTEND SET ATTEND_DATE = '$today', COUNTS = '$counts' WHERE ID = '$id'";
       $stmt = $conn -> prepare($query1);
       $stmt -> execute();
 
