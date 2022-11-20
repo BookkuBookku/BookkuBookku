@@ -36,7 +36,7 @@
               <a class="nav-link active" aria-current="page" href="total_book.php" style="font-size:1.4em;">전체 도서</a>
             </li>
             <li class="nav-item">
-             <a class="nav-link active" aria-current="page" href="my_lib.php" style="font-size:1.4em;">내 서재</a>
+             <a class="nav-link active" aria-current="page" href="my_lib.php?s=reading" style="font-size:1.4em;">내 서재</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="bugkkuleomi.php" style="font-size:1.4em;">북꾸러미</a>
