@@ -13,13 +13,17 @@ $book_name = "%".$book_name."%";
   $stmt = $conn -> prepare($query);
   $stmt -> execute(array($book_name));
 
-while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){//결과를 출력한다.
-  $name = $row['NAME'];
-  $bid = $row['BID'];
+  while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){//결과를 출력한다.
+    $name = $row['NAME'];
+    $bid = $row['BID'];
 ?>
 
   <p> <a href="book_detail.php?bid=<?=$bid?>"> <?= $name?> </a></p>
 
   <?php
+  }
+
+  if(empty($row)){
+    echo $book_name."을(를) 포함하는 책이 없습니다.";
   }
   ?>
