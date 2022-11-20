@@ -15,13 +15,12 @@
       <a class="nav-link active" aria-current="page" href="my_lib.php?s=sentence" style="font-size:1.4em;">문구</a>
     </li>
   </ul>
-   <form class="d-flex" role="search.php">
+   <form class="d-flex" role="search" method="POST" action="search.php">
      <input class="form-control me-2" type="text" name="book_name" placeholder="책 제목" aria-label="Search">
      <button class="btn btn-outline-success" type="submit">Search</button>
    </form>
  </div>
 </nav>
-
 
 <?php
 $s = $_GET['s'];
@@ -37,14 +36,14 @@ $s = $_GET['s'];
      $stmt -> execute(array($id));
 
    while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){//결과를 출력한다.
-     if(empty($row)){
-       echo "읽던 책이 없습니다.";
-     }
      $name = $row['NAME'];
      $bid = $row['BID'];
    ?>
      <p> <a href="book_detail.php?bid=<?=$bid?>"> <?= $name?> </a></p>
      <?php
+     }
+     if(empty($row)){
+       echo "읽던 책이 없습니다.";
      }
 
 }elseif ($s =='like') {?>
@@ -59,15 +58,14 @@ $s = $_GET['s'];
     $stmt -> execute(array($id));
 
   while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){//결과를 출력한다.
-    if(empty($row)){
-      echo "찜한 책이 없습니다.";
-    }
-
     $name = $row['NAME'];
     $bid = $row['BID'];
   ?>
     <p> <a href="book_detail.php?bid=<?=$bid?>"> <?= $name?> </a></p>
     <?php
+    }
+    if(empty($row)){
+      echo "찜한 책이 없습니다.";
     }
 
 }elseif ($s =='sentence') {?>
@@ -82,9 +80,6 @@ $s = $_GET['s'];
     $stmt -> execute(array($id));
 
   while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){//결과를 출력한다.
-    if(empty($row)){
-      echo "작성한 문구가 없습니다.";
-    }
     $pid = $row['PID'];
     $name = $row['NAME'];
     $bid = $row['BID'];
@@ -103,6 +98,9 @@ $s = $_GET['s'];
 
     // 파일 닫기
     fclose($fp);
+    }
+    if(empty($row)){
+      echo "작성한 문구가 없습니다.";
     }
 }
 ?>
