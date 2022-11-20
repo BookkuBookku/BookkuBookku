@@ -1,0 +1,88 @@
+body {
+  font-family: "Lato", sans-serif;
+}
+
+.main-head {
+  height: 150px;
+  background: #000;
+}
+
+.sidenav {
+  height: 100%;
+  background-color: #FFF;
+  overflow-x: hidden;
+  padding-top: 50px;
+}
+
+.main {
+  padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {
+    padding-top: 15px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .login-form {
+    margin-top: 10%;
+  }
+
+  .register-form {
+    margin-top: 10%;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .main {
+    margin-left: 40%;
+  }
+
+  .sidenav {
+    width: 40%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+  }
+
+  .login-form {
+    margin-top: 45%;
+  }
+
+  .register-form {
+    margin-top: 20%;
+  }
+}
+
+.login-main-text {
+  margin-top: 31%;
+  padding: 30px 5px 10px 5px;
+  color: #fff;
+}
+
+.login-main-text h2 {
+  font-weight: 300;
+}
+
+form{
+  margin-bottom: 0px;
+}
+
+.btn-black {
+  background-color: #000 !important;
+  color: #fff;
+  width: 100%;
+  margin-bottom: 10px;
+  border: 0;
+  outline: 0;
+}
+
+.btn-secondary {
+  background-color: rgb(192, 192, 192) !important;
+  color: #fff;
+  width: 100%;
+  border: 0;
+  outline: 0;
+}
