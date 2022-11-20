@@ -14,31 +14,38 @@ try {
   $bid = $_POST['bid'];
   $id = $_POST['id'];
   $sentence = $_POST['sentence'];
-  $today = date("Y-m-d");
+  $phase_date = date("Y-m-d");
 
   //입력 받은 내용 업데이트
-  //$query1 = "INSERT INTO PHASE (BID, ID, ROUTE, PHASE_DATE)
-  //              VALUES (:bid, :id, :phase_like,:phase_date)";
-  //$stmt = $conn -> prepare($query1);
-  //$stmt->bindParam(':bid',$bid);
-  //$stmt->bindParam(':id',$id);
-  //$stmt->bindParam(':phase_like', 0);
-  //$stmt->bindParam(':phase_date',$phase_date);
-  //$stmt -> execute()
-
-  //sentence 업데이트 및 저장
-  $query = "SELECT PID FROM PHASE";
-
-  $stmt = $conn -> prepare($query);
+  $query1 = "INSERT INTO PHASE (BID, ID, PHASE_DATE)
+                VALUES (:bid, :id, :phase_date)";
+  $stmt = $conn -> prepare($query1);
+  $stmt->bindParam(':bid',$bid);
+  $stmt->bindParam(':id',$id);
+  $stmt->bindParam(':phase_date',$phase_date);
   $stmt -> execute();
 
-//이상함 while로 했는데도 1개만 반환됨... oracle에서는 3개 반환 잘 됨ㄱ-..
-  while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){//결과를 출력한다.
+  //sentence 업데이트 및 저장
+  $query2 = "SELECT MAX(PID) PID FROM PHASE";
+  $stmt = $conn -> prepare($query2);
+  $stmt -> execute();
+
+  while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){
     $pid = $row['PID'];
-    echo $pid;
   }
 
-  $route = "C:\\Apache24\\htdocs\\BookkuBookku\\Phase\\".$bid."_".$pid."\.txt";
+  $route = $bid."_".$pid."\.txt";
+  //문장 파일 생성: 오류 발생
+  $myfile = @fopen($route, "w") or die("Unable to open file!");
+  $txt = $sentence;
+  fwrite($myfile, $txt);
+  fclose($myfile);
 
-  
+  //DB에 경로 추가
+  $query3 = "UPDATE PHASE SET route = :route WHERE PID = :pid";
+  $stmt = $conn -> prepare($query3);
+  $stmt->bindParam(':route',$route);
+  $stmt->bindParam(':pid',$pid);
+  $stmt -> execute()
+
   ?>
