@@ -9,13 +9,13 @@
       <a class="nav-link active" aria-current="page" href="total_book.php" style="font-size:1.4em;">전체 도서</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="my_lib.php?id=reding" style="font-size:1.4em;">읽던 책</a>
+      <a class="nav-link active" aria-current="page" href="my_lib.php?s=reding" style="font-size:1.4em;">읽던 책</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="my_lib.php?id=like" style="font-size:1.4em;">찜한 책</a>
+      <a class="nav-link active" aria-current="page" href="my_lib.php?s=like" style="font-size:1.4em;">찜한 책</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="my_lib.php?id=sentence" style="font-size:1.4em;">문구</a>
+      <a class="nav-link active" aria-current="page" href="my_lib.php?s=sentence" style="font-size:1.4em;">문구</a>
     </li>
   </ul>
    <form class="d-flex" role="search">
