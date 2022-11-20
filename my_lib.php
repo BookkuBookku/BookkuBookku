@@ -76,7 +76,7 @@ $s = $_GET['s'];
 }elseif ($s =='sentence') {?>
   <h2>내 문구</h2>
   <?php
-    $query = "SELECT BOOK.NAME, BOOK.AUTHOR, BOOK.BID, PHASE.ROUTE
+    $query = "SELECT PHASE.PID, BOOK.NAME, BOOK.AUTHOR, BOOK.BID, PHASE.ROUTE
              FROM PHASE, BOOK
              WHERE BOOK.BID = PHASE.BID
                AND PHASE.ID = ?";
@@ -88,11 +88,12 @@ $s = $_GET['s'];
     if(empty($row)){
       echo "작성한 문구가 없습니다.";
     }
+    $pid = $row['PID'];
     $name = $row['NAME'];
     $bid = $row['BID'];
     $route = $row['ROUTE'];
   ?>
-    <p> <a href="phase_detail.php?bid=<?=$bid?>"> <?= $name?> </a></p>
+    <p> <a href="phase_detail.php?pid=<?=$pid?>"> <?= $name?> </a></p>
     <?php
     //파일 열기
     $fp = fopen($route, "r") or die("문장을 불러올 수 없습니다.");
