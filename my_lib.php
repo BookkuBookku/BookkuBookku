@@ -15,8 +15,8 @@
       <a class="nav-link active" aria-current="page" href="my_lib.php?s=sentence" style="font-size:1.4em;">문구</a>
     </li>
   </ul>
-   <form class="d-flex" role="search">
-     <input class="form-control me-2" type="search" placeholder="책 제목" aria-label="Search">
+   <form class="d-flex" role="search.php">
+     <input class="form-control me-2" type="text" name="book_name" placeholder="책 제목" aria-label="Search">
      <button class="btn btn-outline-success" type="submit">Search</button>
    </form>
  </div>
