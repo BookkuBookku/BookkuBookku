@@ -35,14 +35,17 @@ $s = $_GET['s'];
      $stmt = $conn -> prepare($query);
      $stmt -> execute(array($id));
 
-   while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){//결과를 출력한다.
-     $name = $row['NAME'];
-     $bid = $row['BID'];
-   ?>
-     <p> <a href="book_detail.php?bid=<?=$bid?>"> <?= $name?> </a></p>
-     <?php
-     }
-     if(empty($row)){
+     if(!empty($row = $stmt -> fetch(PDO::FETCH_ASSOC))){
+       do{
+         $name = $row['NAME'];
+         $bid = $row['BID'];
+       ?>
+         <p> <a href="book_detail.php?bid=<?=$bid?>"> <?= $name?> </a></p>
+         <?php
+
+       }while($row = $stmt -> fetch(PDO::FETCH_ASSOC));
+
+     }else{
        echo "읽던 책이 없습니다.";
      }
 
@@ -57,21 +60,23 @@ $s = $_GET['s'];
     $stmt = $conn -> prepare($query);
     $stmt -> execute(array($id));
 
-  while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){//결과를 출력한다.
-    $name = $row['NAME'];
-    $bid = $row['BID'];
-  ?>
-    <p> <a href="book_detail.php?bid=<?=$bid?>"> <?= $name?> </a></p>
-    <?php
-    }
-    if(empty($row)){
+    if(!empty($row = $stmt -> fetch(PDO::FETCH_ASSOC))){
+      do{//결과를 출력한다.
+        $name = $row['NAME'];
+        $bid = $row['BID'];
+      ?>
+        <p> <a href="book_detail.php?bid=<?=$bid?>"> <?= $name?> </a></p>
+        <?php
+        }while($row = $stmt -> fetch(PDO::FETCH_ASSOC));
+
+    }else{
       echo "찜한 책이 없습니다.";
     }
 
 }elseif ($s =='sentence') {?>
   <h2>내 문구</h2>
   <?php
-    $query = "SELECT PHASE.PID, BOOK.NAME, BOOK.AUTHOR, BOOK.BID, PHASE.ROUTE
+    $query = "SELECT PHASE.PID, BOOK.NAME, BOOK.BID, PHASE.ROUTE
              FROM PHASE, BOOK
              WHERE BOOK.BID = PHASE.BID
                AND PHASE.ID = ?";
@@ -79,27 +84,31 @@ $s = $_GET['s'];
     $stmt = $conn -> prepare($query);
     $stmt -> execute(array($id));
 
-  while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){//결과를 출력한다.
-    $pid = $row['PID'];
-    $name = $row['NAME'];
-    $bid = $row['BID'];
-    $route = $row['ROUTE'];
-  ?>
-    <p> <a href="phase_detail.php?pid=<?=$pid?>"> <?= $name?> </a></p>
-    <?php
-    //파일 열기
-    $fp = fopen($route, "r") or die("문장을 불러올 수 없습니다.");
-    // 파일 내용 출력
+    if(!empty($row = $stmt -> fetch(PDO::FETCH_ASSOC))){
+      do{
+        {//결과를 출력한다.
+          $pid = $row['PID'];
+          $name = $row['NAME'];
+          $bid = $row['BID'];
+          $route = $row['ROUTE'];
+        ?>
+          <p> <a href="phase_detail.php?pid=<?=$pid?>"> <?= $name?> </a></p>
+          <?php
+          //파일 열기
+          $fp = fopen($route, "r") or die("문장을 불러올 수 없습니다.");
+          // 파일 내용 출력
 
-    while( !feof($fp) ) {
-      $member = fgets($fp); // 한 줄씩 $member 변수에 저장하고
-      echo $member."<br>";
-    }
+          while( !feof($fp) ) {
+            $member = fgets($fp); // 한 줄씩 $member 변수에 저장하고
+            echo $member."<br>";
+          }
 
-    // 파일 닫기
-    fclose($fp);
-    }
-    if(empty($row)){
+          // 파일 닫기
+          fclose($fp);
+          }
+      }while($row = $stmt -> fetch(PDO::FETCH_ASSOC));
+
+    }else{
       echo "작성한 문구가 없습니다.";
     }
 }
