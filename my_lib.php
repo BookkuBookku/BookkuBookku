@@ -76,7 +76,7 @@ $s = $_GET['s'];
 }elseif ($s =='sentence') {?>
   <h2>내 문구</h2>
   <?php
-    $query = "SELECT PHASE.PID, BOOK.NAME, BOOK.BID, PHASE.ROUTE
+    $query = "SELECT PHASE.PID, BOOK.NAME, BOOK.BID, PHASE.SENTENCE
              FROM PHASE, BOOK
              WHERE BOOK.BID = PHASE.BID
                AND PHASE.ID = ?";
@@ -86,26 +86,15 @@ $s = $_GET['s'];
 
     if(!empty($row = $stmt -> fetch(PDO::FETCH_ASSOC))){
       do{
-        {//결과를 출력한다.
+        //결과를 출력한다.
           $pid = $row['PID'];
           $name = $row['NAME'];
           $bid = $row['BID'];
-          $route = $row['ROUTE'];
+          $sentence = $row['SENTENCE'];
         ?>
           <p> <a href="phase_detail.php?pid=<?=$pid?>"> <?= $name?> </a></p>
+          <p> <?= $sentence?> </br> </br> </a></p>
           <?php
-          //파일 열기
-          $fp = fopen($route, "r") or die("문장을 불러올 수 없습니다.");
-          // 파일 내용 출력
-
-          while( !feof($fp) ) {
-            $member = fgets($fp); // 한 줄씩 $member 변수에 저장하고
-            echo $member."<br>";
-          }
-
-          // 파일 닫기
-          fclose($fp);
-          }
       }while($row = $stmt -> fetch(PDO::FETCH_ASSOC));
 
     }else{
