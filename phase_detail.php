@@ -2,7 +2,7 @@
  require('menu.php');
 
  $pid = $_GET['pid'];
- $query = "SELECT PHASE.PID, BOOK.NAME BOOK_NAME, BOOK.AUTHOR, BOOK.BID, PHASE.ROUTE, BOOK_USER.NAME
+ $query = "SELECT PHASE.PID, BOOK.NAME BOOK_NAME, BOOK.AUTHOR, BOOK.BID, PHASE.SENTENCE, BOOK_USER.NAME
             FROM PHASE, BOOK, BOOK_USER
             WHERE BOOK.BID = PHASE.BID AND BOOK_USER.ID = PHASE.ID
               AND PHASE.PID = ?";
@@ -10,29 +10,19 @@
  $stmt = $conn -> prepare($query);
  $stmt -> execute(array($pid));
 
- while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){//결과를 출력한다.
+ if(!empty($row = $stmt -> fetch(PDO::FETCH_ASSOC))){//결과를 출력한다.
    $pid = $row['PID'];
    $book_name = $row['BOOK_NAME'];
    $bid = $row['BID'];
    $author = $row['AUTHOR'];
-   $route = $row['ROUTE'];
+   $sentence = $row['SENTENCE'];
    $name = $row['NAME'];
  ?>
    <p> <a href="book_detail.php?bid=<?=$bid?>"> <?= $book_name?> </a></p>
    <p>작가: <?= $author?> </p>
    <p>글쓴이: <?= $name?> </p>
+   <p> <?= $sentence?> </br> </br> </a></p>
    <?php
-   //파일 열기
-   $fp = fopen($route, "r") or die("문장을 불러올 수 없습니다.");
-   // 파일 내용 출력
-
-   while( !feof($fp) ) {
-     $member = fgets($fp); // 한 줄씩 $member 변수에 저장하고
-     echo $member."<br>";
-   }
-
-   // 파일 닫기
-   fclose($fp);
    }
 ?>
 
