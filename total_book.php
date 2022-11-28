@@ -30,4 +30,3 @@ while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){//결과를 출력한다.
   <?php
   }
   ?>
-post방식으로 a태그 어케 넘김????
