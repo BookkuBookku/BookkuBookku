@@ -14,35 +14,22 @@
   $id = $_POST['id'];
   $today = date("Y-m-d");
 
-  $query = "SELECT ATTEND_DATE, COUNTS
+  $query = "SELECT *
          FROM ATTEND
-         WHERE ID = ?";
+         WHERE ID = ? AND ATTEND_DATE = ?";
 
   $stmt = $conn -> prepare($query);
-  $stmt -> execute(array($id));
+  $stmt -> execute(array($id, $today));
 
   if (!empty($row = $stmt -> fetch(PDO::FETCH_ASSOC))){
-    $date = $row['ATTEND_DATE'];
-    $counts = $row['COUNTS'];
-    if(date("y/m/d") == $date){
       echo "<script>alert('이미 출석을 하셨습니다!');</script>";
       header("Refresh: 0; URL=attendance.php");
-    }else{
-      $counts = $counts+1;
-      $query1 = "UPDATE ATTEND SET ATTEND_DATE = '$today', COUNTS = '$counts' WHERE ID = '$id'";
-      $stmt = $conn -> prepare($query1);
-      $stmt -> execute();
 
-      echo "<script>alert('출석을 완료하였습니다.');</script>";
-      header("Refresh: 0; URL=attendance.php");
-    }
-  }else{//처음 출석하는 경우
-    $counts = 1;
-    $query = "INSERT INTO ATTEND (ID, COUNTS, ATTEND_DATE)
-            VALUES (:id, :counts, :today)";
+  }else{//오늘 처음 출석하는 경우
+    $query = "INSERT INTO ATTEND (ID, ATTEND_DATE)
+            VALUES (:id, :today)";
     $stmt = $conn -> prepare($query);
     $stmt->bindParam(':id',$id);
-    $stmt->bindParam(':counts',$counts);
     $stmt->bindParam(':today',$today);
     $stmt -> execute();
 

@@ -8,44 +8,71 @@
     <a class="navbar-brand" style="font-size:2em;"><b>출석체크</b></a>
       <form class="d-flex" role="search" method="POST" action="search.php">
         <input class="form-control me-2" type="text" name="book_name" placeholder="책 제목" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-outline-success" type="submit" >Search</button>
       </form>
   </div>
 </nav>
 
 <form method="POST" action="attendance_process.php"><!-- 출석 버튼 -->
   <input type="hidden" name="id" value="<?= $id ?>"/>
-  <p> <input type="submit" value="출석하기"/> </p>
+  <p> <input style="margin-left: 65px;" type="submit" value="출석하기"/> </p>
 </form>
 
 <?php
-  $query = "SELECT COUNTS
+//출석 날짜 배열
+  $query = "SELECT TO_CHAR(ATTEND_DATE, 'YYYY-MM-DD') ATTEND_DATE
          FROM ATTEND
          WHERE ID = ?";
 
   $stmt = $conn -> prepare($query);
   $stmt -> execute(array($id));
 
-  if (!empty($row = $stmt -> fetch(PDO::FETCH_ASSOC))){
-    $counts = $row['COUNTS'];
-    echo "누적 출석 횟수: ".$counts;
-
-  }?>
-
+  $date_array = [];
+  while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){//결과를 출력한다.
+         $attend_date = $row['ATTEND_DATE'];
+         $oneday_attend = ['title' => '출석', 'start' => $attend_date, 'backgroundColor' => "#00BFB9", 'borderColor' => '#00BFB9'];
+         array_push($date_array, $oneday_attend);
+  };
+  $json = json_encode($date_array);
+  $bytes = file_put_contents("calendar_json.json", $json);
+  
+  $counts = count ($date_array);
+  ?>
 <!DOCTYPE html>
 <html lang='en'>
   <head>
     <meta charset='utf-8' />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
     <link href='.\node_modules\fullcalendar\main.css' rel='stylesheet' />
     <script src='.\node_modules\fullcalendar\main.js'></script>
+    <script src='.\node_modules\fullcalendar\ko.js'></script>
     <script>
-
       document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          initialView: 'dayGridMonth'
+        $(function () {
+            var request = $.ajax({
+                url: "calendar_json.json", // 변경하기
+                method: "GET",
+                dataType: "json"
+            });
+
+            request.done(function (data) {
+                console.log(data); // log 로 데이터 찍어주기.
+
+                var calendarEl = document.getElementById('calendar');
+
+                var calendar = new FullCalendar.Calendar(calendarEl, {
+                  initialView: 'dayGridMonth',
+                  locale: 'ko',
+                  events: data
+                });
+
+                calendar.render();
+            });
+
+            request.fail(function( jqXHR, textStatus ) {
+                alert( "Request failed: " + textStatus );
+            });
         });
-        calendar.render();
       });
 
     </script>
