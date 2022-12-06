@@ -12,6 +12,7 @@
   }
 
   $id = $_POST['id'];
+  date_default_timezone_set('Asia/Seoul');
   $today = date("Y-m-d");
 
   $query = "SELECT *
