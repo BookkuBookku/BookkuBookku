@@ -1,8 +1,16 @@
 <?php
  require('menu.php');
+ $bid = $_POST['bid'];
+?>
 
-$bid = $_POST['bid'];
+<form method="POST" action="book_process.php"><!-- 책갈피 -->
+  <input type="hidden" name="bid" value="<?= $bid ?>"/>
+  <input type="hidden" name="id" value="<?= $id ?>"/>
+  <input type="hidden" name="status" value="reading"/>
+  <p> <input type="submit" value="책갈피"/> </p>
+</form>
 
+<?php
 $query = "SELECT NAME, ROUTE
          FROM BOOK
          WHERE BID = ?";
