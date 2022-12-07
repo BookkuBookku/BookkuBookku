@@ -3,7 +3,7 @@
 ?>
 <nav class="navbar navbar-expand-lg bg-light">
 <div class="container-fluid" style="padding: 0px 75px 0px 60px;">
-  <a class="navbar-brand" style="font-size:2em;"><b>내 서재</b></a>
+  <a class="navbar-brand" style="font-size:2em;">내 서재</a>
    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
     <li class="nav-item">
       <a class="nav-link active" aria-current="page" href="my_lib.php?s=reading" style="font-size:1.4em;">읽던 책</a>

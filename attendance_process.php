@@ -1,3 +1,7 @@
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff');
+</style>
+
 <?php
 // DB와 연결
   $tns = "(DESCRIPTION=

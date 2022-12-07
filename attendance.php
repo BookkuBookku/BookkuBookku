@@ -1,11 +1,14 @@
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Ohsquare.woff');
+</style>
+
 <?php
  require('menu.php');
-
 ?>
 
 <nav class="navbar bg-light">
   <div class="container-fluid" style="padding: 0px 75px 0px 60px;">
-    <a class="navbar-brand" style="font-size:2em;"><b>출석체크</b></a>
+    <a class="navbar-brand" style="font-size:2em;">출석체크</a>
       <form class="d-flex" role="search" method="POST" action="search.php">
         <input class="form-control me-2" type="text" name="book_name" placeholder="책 제목" aria-label="Search">
         <button class="btn btn-outline-success" type="submit" >Search</button>
