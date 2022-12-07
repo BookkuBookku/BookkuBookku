@@ -15,7 +15,6 @@ $bid = $_POST['bid'];
 $id = $_POST['id'];
 $status = $_POST['status'];
 
-
 $query = "SELECT * FROM MY_LIB WHERE ID = ? AND BID = ?";
 $stmt = $conn -> prepare($query);
 $stmt -> execute(array($id, $bid));
