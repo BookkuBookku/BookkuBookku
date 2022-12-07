@@ -31,7 +31,7 @@
 
     }else{
       $_SESSION['id'] = $row['ID'];
-      header("Refresh: 0; URL=index.php");
+      header("Refresh: 0; URL=total_book.php");
     }
   }
 ?>
