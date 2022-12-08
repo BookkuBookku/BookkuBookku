@@ -29,7 +29,7 @@
 
 <nav class="navbar navbar-expand-lg bg-light">
   <div class="container-fluid" style="padding: 0px 75px 0px 60px;">
-    <a href="index.php">
+    <a href="total_book.php">
       <img src=".\assets\BookkubBookku_logo_h.png" alt="Logo" width="265" height="100" class="d-inline-block align-text-top">
     </a>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">

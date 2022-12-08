@@ -1,6 +1,7 @@
 <?php
  require('menu.php');
 ?>
+<link href=".\css\total_book.css" rel="stylesheet" type="text/css" />
 <nav class="navbar bg-light">
   <div class="container-fluid" style="padding: 0px 75px 0px 60px;">
     <a class="navbar-brand" style="font-size:2em;">전체 도서</a>
@@ -10,22 +11,33 @@
       </form>
   </div>
 </nav>
+<section class="total_book_section">
+  <?php
+    $query = "SELECT NAME, AUTHOR, BID
+            FROM BOOK
+            ORDER BY NAME";
 
-<?php
-  $query = "SELECT NAME, BID
-           FROM BOOK
-           ORDER BY NAME";
+    $stmt = $conn -> prepare($query);
+    $stmt -> execute();
 
-  $stmt = $conn -> prepare($query);
-  $stmt -> execute();
-
-while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){//결과를 출력한다.
-  $name = $row['NAME'];
-  $bid = $row['BID'];
-?>
-
-  <p> <a href="book_detail.php?bid=<?=$bid?>"> <?= $name?> </a></p>
+  while($row = $stmt -> fetch(PDO::FETCH_ASSOC)){//결과를 출력한다.
+    $name = $row['NAME'];
+    $author = $row['AUTHOR'];
+    $bid = $row['BID'];
+  ?>
+    <div class="book_box"  OnClick="location.href ='book_detail.php?bid=<?=$bid?>'" style="cursor:pointer;">
+      <div class="book_cover">
+        <p><?= $name?></p>
+      </div>
+      <div>
+        <p class="book_name"> <?= $name?> </p>
+        <p class="book_author"> <?= $author?> </p>
+      </div>
+      <!-- <p> <a href="book_detail.php?bid=<?=$bid?>"></a></p> -->
+    </div>
 
   <?php
   }
   ?>
+</section>
+
