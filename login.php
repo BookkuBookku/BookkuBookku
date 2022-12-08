@@ -37,6 +37,7 @@
 ?>
 
 <html>
+  <title> 북꾸북꾸 </title>
   <head>
     <meta charset="utf-8" />
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
