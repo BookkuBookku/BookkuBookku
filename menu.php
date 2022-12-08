@@ -18,6 +18,7 @@
 
 <!doctype html>
 <html>
+  <title> 북꾸북꾸 </title>
   <head>
     <meta charset="utf-8">
     <link href=".\css\menu.css" rel="stylesheet" type="text/css" />
