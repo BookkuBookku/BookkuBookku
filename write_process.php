@@ -16,6 +16,11 @@ try {
   $sentence = $_POST['sentence'];
   $phase_date = date("Y-m-d");
 
+  if(mb_strlen($sentence, "UTF-8") == 0){//입력된 문자가 없을 경우
+    echo "<script>alert('빈 문장을 등록할 수 없습니다.');</script>";
+    header("Refresh: 0; URL=book_detail.php?bid=$bid");
+  }
+
   //입력 받은 내용 업데이트
   $query1 = "INSERT INTO PHASE (BID, ID, SENTENCE, PHASE_DATE)
                 VALUES (:bid, :id, :sentence, :phase_date)";
@@ -28,4 +33,5 @@ try {
 
   echo "<script>alert('문장을 등록하였습니다!');</script>";
   header("Refresh: 0; URL=book_detail.php?bid=$bid");
+
   ?>
