@@ -93,7 +93,14 @@ $s = $_GET['s'];
           $sentence = $row['SENTENCE'];
         ?>
           <p> <a href="phase_detail.php?pid=<?=$pid?>"> <?= $name?> </a></p>
-          <p> <?= $sentence?> </br> </br> </a></p>
+          <?= $sentence?>
+
+          <form method="POST" action="phase_delete.php"><!-- 삭제 -->
+            <input type="hidden" name="pid" value="<?= $pid ?>"/>
+            <input type="submit" value="삭제"/>
+          </form>
+
+           </br> </br>
           <?php
       }while($row = $stmt -> fetch(PDO::FETCH_ASSOC));
 
