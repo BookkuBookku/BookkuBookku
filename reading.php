@@ -10,6 +10,12 @@
   <p> <input type="submit" value="책갈피"/> </p>
 </form>
 
+<form method="POST" action="write.php"><!-- 문장공유 -->
+  <input type="hidden" name="bid" value="<?= $bid ?>"/>
+  <input type="hidden" name="status" value="reading"/>
+  <p> <input type="submit" value="문장 공유"/> </p>
+</form>
+
 <?php
 $query = "SELECT NAME, ROUTE
          FROM BOOK
