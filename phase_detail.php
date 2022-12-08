@@ -2,7 +2,7 @@
  require('menu.php');
 
  $pid = $_GET['pid'];
- $query = "SELECT PHASE.PID, BOOK.NAME BOOK_NAME, BOOK.AUTHOR, BOOK.BID, PHASE.SENTENCE, BOOK_USER.NAME
+ $query = "SELECT PHASE.PID, BOOK.NAME BOOK_NAME, BOOK.AUTHOR, BOOK.BID, PHASE.SENTENCE, BOOK_USER.NAME, PHASE.PHASE_DATE
             FROM PHASE, BOOK, BOOK_USER
             WHERE BOOK.BID = PHASE.BID AND BOOK_USER.ID = PHASE.ID
               AND PHASE.PID = ?";
@@ -17,10 +17,12 @@
    $author = $row['AUTHOR'];
    $sentence = $row['SENTENCE'];
    $name = $row['NAME'];
+   $date = $row['PHASE_DATE'];
  ?>
    <p> <a href="book_detail.php?bid=<?=$bid?>"> <?= $book_name?> </a></p>
    <p>작가: <?= $author?> </p>
-   <p>글쓴이: <?= $name?> </p>
+   <p>작성자: <?= $name?> </p>
+   <p>작성일: <?= $date?> </p>
    <p> <?= $sentence?> </br> </br> </a></p>
    <?php
    }
