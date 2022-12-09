@@ -4,7 +4,10 @@
   font-weight: normal;
   font-style: normal;
 }
-div {
+div, section {
   font-family: 'ONE-Mobile-Title';
   color: #606060;
+}
+body{
+  padding-top: 100px;
 }
