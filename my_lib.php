@@ -1,6 +1,7 @@
 <?php
  require('menu.php');
 ?>
+<link href=".\css\my_lib.css" rel="stylesheet" type="text/css" />
 <nav class="navbar navbar-expand-lg bg-light">
 <div class="container-fluid" style="padding: 0px 75px 0px 60px;">
   <a class="navbar-brand" style="font-size:2em;">내 서재</a>
@@ -21,37 +22,46 @@
    </form>
  </div>
 </nav>
-
+<section>
 <?php
 $s = $_GET['s'];
- if($s =='reading'){?>
-   <h2>읽던 책</h2>
-   <?php
-     $query = "SELECT DISTINCT BOOK.NAME, BOOK.AUTHOR, BOOK.BID
-              FROM MY_LIB, BOOK
-              WHERE BOOK.BID = MY_LIB.BID
-                AND MY_LIB.ID = ? AND MY_LIB.READING = 'T' ";
+  if($s =='reading'){?>
+    <p class="page_title">읽던 책</p>
+    <div class="book_list">
+      <?php
+        $query = "SELECT DISTINCT BOOK.NAME, BOOK.AUTHOR, BOOK.BID
+                  FROM MY_LIB, BOOK
+                  WHERE BOOK.BID = MY_LIB.BID
+                    AND MY_LIB.ID = ? AND MY_LIB.READING = 'T' ";
 
-     $stmt = $conn -> prepare($query);
-     $stmt -> execute(array($id));
+        $stmt = $conn -> prepare($query);
+        $stmt -> execute(array($id));
 
-     if(!empty($row = $stmt -> fetch(PDO::FETCH_ASSOC))){
-       do{
-         $name = $row['NAME'];
-         $bid = $row['BID'];
-       ?>
-         <p> <a href="book_detail.php?bid=<?=$bid?>"> <?= $name?> </a></p>
-         <?php
-
+        if(!empty($row = $stmt -> fetch(PDO::FETCH_ASSOC))){
+          do{
+            $name = $row['NAME'];
+            $bid = $row['BID'];
+      ?>
+      <div class="book_box"  OnClick="location.href ='book_detail.php?bid=<?=$bid?>'" style="cursor:pointer;">
+        <div class="book_cover">
+          <p class="cover_title"><?= $name?></p>
+        </div>
+        <div>
+          <p class="book_name"> <?= $name?> </p>
+        </div>
+      </div>     
+  
+    <?php
        }while($row = $stmt -> fetch(PDO::FETCH_ASSOC));
-
      }else{
        echo "읽던 책이 없습니다.";
-     }
-
-}elseif ($s =='like') {?>
-  <h2>찜한 책</h2>
+     }?>
+    </div>
   <?php
+  }elseif ($s =='like') {?>
+    <p class="page_title">찜한 책</p>
+    <div class="book_list">
+    <?php
     $query = "SELECT DISTINCT BOOK.NAME, BOOK.AUTHOR, BOOK.BID
              FROM MY_LIB, BOOK
              WHERE BOOK.BID = MY_LIB.BID
@@ -65,16 +75,24 @@ $s = $_GET['s'];
         $name = $row['NAME'];
         $bid = $row['BID'];
       ?>
-        <p> <a href="book_detail.php?bid=<?=$bid?>"> <?= $name?> </a></p>
+        <div class="book_box"  OnClick="location.href ='book_detail.php?bid=<?=$bid?>'" style="cursor:pointer;">
+        <div class="book_cover">
+          <p class="cover_title"><?= $name?></p>
+        </div>
+        <div>
+          <p class="book_name"> <?= $name?> </p>
+        </div>
+      </div> 
         <?php
         }while($row = $stmt -> fetch(PDO::FETCH_ASSOC));
 
-    }else{
-      echo "찜한 책이 없습니다.";
-    }
-
+      }else{
+        echo "찜한 책이 없습니다.";
+      }?>
+    </div>
+<?php
 }elseif ($s =='sentence') {?>
-  <h2>내 문구</h2>
+   <p class="page_title">내 문구</p>
   <?php
     $query = "SELECT PHASE.PID, BOOK.NAME, BOOK.BID, PHASE.SENTENCE
              FROM PHASE, BOOK
@@ -92,15 +110,17 @@ $s = $_GET['s'];
           $bid = $row['BID'];
           $sentence = $row['SENTENCE'];
         ?>
-          <p> <a href="phase_detail.php?pid=<?=$pid?>"> <?= $name?> </a></p>
-          <?= $sentence?>
+        <div class="phase_box">
+          <div class="phase_title">
+            <a class="book_name_phase" href="phase_detail.php?pid=<?=$pid?>"> <?= $name?> </a>
+            <form method="POST" action="phase_delete.php"><!-- 삭제 -->
+              <input type="hidden" name="pid" value="<?= $pid ?>"/>
+              <input class="btn" type="submit" value="삭제"/>
+            </form>
+          </div>         
+          <p class="phase"><?= $sentence?></p>
+        </div>
 
-          <form method="POST" action="phase_delete.php"><!-- 삭제 -->
-            <input type="hidden" name="pid" value="<?= $pid ?>"/>
-            <input type="submit" value="삭제"/>
-          </form>
-
-           </br> </br>
           <?php
       }while($row = $stmt -> fetch(PDO::FETCH_ASSOC));
 
@@ -109,3 +129,5 @@ $s = $_GET['s'];
     }
 }
 ?>
+
+</section>
