@@ -1,3 +1,56 @@
+section{
+    width: 90%;
+    margin: 20px auto;
+}
+.book_list{
+    display: flex;
+    flex-wrap: wrap;
+}
+.page_title{
+    font-size: x-large;
+    color: black;
+}
+.book_box{
+    margin: 20px;
+}
+.book_cover{
+    width: 150px;
+    height: 200px;
+    background-color: aquamarine;
+    padding: 5px;
+    margin-bottom: 10px;
+
+    text-align: center;
+    word-break: keep-all;
+    font-size: larger;
+}
+.book_name{
+    font-size: larger;
+    color: black;
+    margin-bottom: 5px;
+    text-align: center;
+}
+.phase_box{
+    margin: 20px 0;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+}
+.book_name_phase{
+    text-decoration-line: none;
+    font-size: larger;
+    margin-top: 5px;
+}
+.phase{
+    margin-top: 10px;
+}
+.phase_title{
+    display: flex;
+    justify-content: space-between;
+}
+.cover_title{
+    margin-top: 15px;
+}
 .btn{
   background-color: #00bfb9;
   color:#ffffff; 

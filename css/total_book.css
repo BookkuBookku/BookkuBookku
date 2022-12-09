@@ -1,3 +1,31 @@
+.total_book_section{
+    width: 90%;
+    margin: 20px auto;
+    display:flex;
+    flex-wrap: wrap;
+}
+.book_box{
+    margin: 20px;
+}
+.book_cover{
+    width: 150px;
+    height: 200px;
+    background-color: aquamarine;
+    padding: 5px;
+    margin-bottom: 10px;
+
+    text-align: center;
+    word-break: keep-all;
+    font-size: larger;
+}
+.book_name{
+    font-size: larger;
+    color: black;
+    margin-bottom: 5px;
+}
+.cover_title{
+    margin-top: 15px;
+}
 .btn{
   background-color: #00bfb9;
   color:#ffffff; 

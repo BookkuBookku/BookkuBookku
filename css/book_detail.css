@@ -1,0 +1,46 @@
+.book_detail_section{
+    width: 70%;
+    margin: 100px auto;
+    display: flex;
+}
+.book_cover{
+    width: 240px;
+    height: 300px;
+    background-color: aquamarine;
+    padding: 5px;
+    margin-bottom: 10px;
+
+    text-align: center;
+    word-break: keep-all;
+    font-size: larger;
+}
+.book_info_div{
+    padding: 0 50px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.book_name{
+    font-size: xx-large;
+    color: black;
+    margin-bottom: 5px;
+}
+.book_author{
+    font-size: larger;
+}
+.buttons{
+    display: flex;
+    width: 150px;
+    justify-content: space-between;
+}
+.buttons [type="submit"]{
+    padding: 0 20px;
+    height: 35px;
+    border-radius: 20px;
+    background-color: transparent;
+}
+.cover_title{
+    margin-top: 20px;
+    font-size: x-large;
+}

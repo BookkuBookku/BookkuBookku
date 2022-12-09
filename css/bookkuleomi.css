@@ -1,0 +1,35 @@
+section{
+    width: 80%;
+    margin: 30px auto;
+}
+.phase_box{
+    height: calc(100vh - 230px);
+    background-color: #f8f9fa;
+    border-radius: 20px;
+    padding: 50px;
+    margin-bottom: 30px;
+}
+ 
+html::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지 */
+}
+.book_name{
+    font-size: xx-large;
+    text-decoration: none;
+}
+.phase{
+    margin-top: 50px;
+    font-size: x-large;
+    color: rgb(69, 69, 69);
+    word-break:keep-all;
+}
+.comment{
+    font-size: x-large;
+    text-decoration: none;
+    color: gray;
+    float:right;
+
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+}
