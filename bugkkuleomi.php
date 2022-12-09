@@ -1,15 +1,14 @@
 <?php
  require('menu.php');
-
 ?>
 
 <link href=".\css\bookkuleomi.css" rel="stylesheet" type="text/css" />
 <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"> 
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script> 
 <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-<nav class="navbar bg-light">
+<nav class="navbar bg-white">
   <div class="container-fluid" style="padding: 0px 75px 0px 60px;">
-    <a class="navbar-brand" style="font-size:2em;">북꾸러미</a>
+    <a class="navbar-brand" style="font-size:2em; margin-left: 27px;">북꾸러미</a>
       <form class="d-flex" role="search" method="POST" action="search.php">
         <input class="form-control me-2" type="text" name="book_name" placeholder="책 제목" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>

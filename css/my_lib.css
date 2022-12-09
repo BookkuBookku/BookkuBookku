@@ -51,3 +51,13 @@ section{
 .cover_title{
     margin-top: 15px;
 }
+.btn{
+  background-color: #00bfb9;
+  color:#ffffff; 
+  border:none; 
+}
+
+.btn:hover{
+  background-color:#00a8a3;
+  transition: 0.7s;
+}

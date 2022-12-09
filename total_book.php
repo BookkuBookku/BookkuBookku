@@ -1,10 +1,11 @@
 <?php
  require('menu.php');
 ?>
+
 <link href=".\css\total_book.css" rel="stylesheet" type="text/css" />
-<nav class="navbar bg-light">
+<nav class="navbar bg-white">
   <div class="container-fluid" style="padding: 0px 75px 0px 60px;">
-    <a class="navbar-brand" style="font-size:2em;">전체 도서</a>
+    <a class="navbar-brand" style="font-size:2em; margin-left: 27px;">전체 도서</a>
       <form class="d-flex" role="search" method="POST" action="search.php">
         <input class="form-control me-2" type="text" name="book_name" placeholder="책 제목" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>

@@ -31,6 +31,7 @@
     $row = $stmt2 -> fetch(PDO::FETCH_ASSOC);
     if(!empty($row)){
       echo "<script>alert('중복된 ID입니다.');</script>";
+      $login_id = null;
     }
 
     //비밀번호 확인

@@ -1,16 +1,17 @@
 <?php
  require('menu.php');
 ?>
+
 <link href=".\css\my_lib.css" rel="stylesheet" type="text/css" />
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg bg-white">
 <div class="container-fluid" style="padding: 0px 75px 0px 60px;">
-  <a class="navbar-brand" style="font-size:2em;">내 서재</a>
+  <a class="navbar-brand" style="font-size:2em; margin-left: 27px; margin-right:20px;">내 서재</a>
    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="my_lib.php?s=reading" style="font-size:1.4em;">읽던 책</a>
+      <a class="nav-link active" aria-current="page" href="my_lib.php?s=reading" style="font-size:1.4em; margin-right:12px;">읽던 책</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="my_lib.php?s=like" style="font-size:1.4em;">찜한 책</a>
+      <a class="nav-link active" aria-current="page" href="my_lib.php?s=like" style="font-size:1.4em; margin-right:12px;">찜한 책</a>
     </li>
     <li class="nav-item">
       <a class="nav-link active" aria-current="page" href="my_lib.php?s=sentence" style="font-size:1.4em;">문구</a>
