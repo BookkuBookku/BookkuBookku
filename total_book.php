@@ -27,13 +27,12 @@
   ?>
     <div class="book_box"  OnClick="location.href ='book_detail.php?bid=<?=$bid?>'" style="cursor:pointer;">
       <div class="book_cover">
-        <p><?= $name?></p>
+        <p class="cover_title"><?= $name?></p>
       </div>
       <div>
         <p class="book_name"> <?= $name?> </p>
         <p class="book_author"> <?= $author?> </p>
       </div>
-      <!-- <p> <a href="book_detail.php?bid=<?=$bid?>"></a></p> -->
     </div>
 
   <?php
