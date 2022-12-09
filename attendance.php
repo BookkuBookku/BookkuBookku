@@ -6,19 +6,19 @@
  require('menu.php');
 ?>
 
-<nav class="navbar bg-light">
+<nav class="navbar bg-white">
   <div class="container-fluid" style="padding: 0px 75px 0px 60px;">
-    <a class="navbar-brand" style="font-size:2em;">출석체크</a>
+    <a class="navbar-brand" style="font-size:2em; margin-left: 27px;">출석체크</a>
       <form class="d-flex" role="search" method="POST" action="search.php">
         <input class="form-control me-2" type="text" name="book_name" placeholder="책 제목" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit" >Search</button>
+        <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
   </div>
 </nav>
 
 <form method="POST" action="attendance_process.php"><!-- 출석 버튼 -->
   <input type="hidden" name="id" value="<?= $id ?>"/>
-  <p> <input style="margin-left: 65px;" type="submit" value="출석하기"/> </p>
+  <p> <input id="btn_attendance"style="margin-left: 50%; margin-top: 5px; margin-bottom: 5px;" type="submit" value="출석하기"/> </p>
 </form>
 
 <?php
@@ -47,6 +47,7 @@
     <meta charset='utf-8' />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
     <link href='.\node_modules\fullcalendar\main.css' rel='stylesheet' />
+    <link href=".\css\attendance.css" rel="stylesheet" type="text/css" />
     <script src='.\node_modules\fullcalendar\main.js'></script>
     <script src='.\node_modules\fullcalendar\ko.js'></script>
     <script>

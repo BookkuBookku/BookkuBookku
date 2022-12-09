@@ -1,11 +1,14 @@
 <?php
  require('menu.php');
-
 ?>
 
-<nav class="navbar bg-light">
+<head>
+<link href=".\css\bugkkuleomi.css" rel="stylesheet" type="text/css" />
+</head>
+
+<nav class="navbar bg-white">
   <div class="container-fluid" style="padding: 0px 75px 0px 60px;">
-    <a class="navbar-brand" style="font-size:2em;">북꾸러미</a>
+    <a class="navbar-brand" style="font-size:2em; margin-left: 27px;">북꾸러미</a>
       <form class="d-flex" role="search" method="POST" action="search.php">
         <input class="form-control me-2" type="text" name="book_name" placeholder="책 제목" aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Search</button>
