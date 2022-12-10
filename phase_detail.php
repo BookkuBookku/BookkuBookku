@@ -1,5 +1,12 @@
 <link href=".\css\phase_detail.css" rel="stylesheet" type="text/css" />
 <section>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
   <?php
   require('menu.php');
 
@@ -40,7 +47,7 @@
   <div id="disqus_thread"></div>
 </section>
 
-<script>
+<!-- <script>
     /**
     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
@@ -57,4 +64,40 @@
     (d.head || d.body).appendChild(s);
     })();
 </script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> -->
+<?php
+  $query2 = "SELECT BOOK_USER.LOGIN_ID, COMMENTS.CONTENTS, COMMENTS.COMMENTS_DATE, COMMENTS.PID FROM COMMENTS, BOOK_USER, PHASE WHERE COMMENTS.ID = BOOK_USER.ID AND PHASE.PID = COMMENTS.PID ORDER BY COMMENTS.CID";
+  $stmt2 = $conn -> prepare($query2);
+  $stmt2 -> execute();
+
+  while(!empty($row = $stmt2 -> fetch(PDO::FETCH_ASSOC))){//결과를 출력한다.
+    $pid_comment= $row['PID'];
+    if($pid == $pid_comment){
+      $login_id = $row['LOGIN_ID'];
+      $contents = $row['CONTENTS'];
+      $comments_date = $row['COMMENTS_DATE'];
+      ?>
+      <div class="comment_box">
+      <div class="comment_title">
+          <p class="user_id"><?= $login_id?> </p>
+          <p class="comment_date"> <?= $comments_date?> </p>
+      </div>
+      <div>
+          <p class="comment_contents"><?= $contents?> </p>
+      </div>
+      </div> 
+  <?php
+      }   
+    }
+  ?>
+</section>
+
+<div id="form-commentInfo">
+    <form method="POST" action="phase_process.php">
+        <input id="comment-input" name="contents" placeholder="댓글을 입력해 주세요.">
+        <input type="hidden" name="pid" value="<?= $pid ?> "/>
+        <input type="hidden" name="id" value="<?= $id ?>"/>
+        <button type="submit" id="submit" value="submit">등록</button>
+    </div>
+    </form>
+</div>
