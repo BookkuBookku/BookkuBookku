@@ -11,12 +11,16 @@
     echo("에러 내용: ".$e -> getMessage());
   }
 
+  $status = $_POST['status'];
+  $pid = $_POST['pid'];
+
+  if($status=="comment"){//댓글
     $id = $_POST['id'];
-    $pid = $_POST['pid'];
     $contents = $_POST['contents'];
     $comments_date = date("Y-m-d");
 
-    $query = "INSERT INTO COMMENTS (ID, PID, CONTENTS, COMMENTS_DATE) VALUES (:id, :pid, :contents, :comments_date)";
+    $query = "INSERT INTO COMMENTS (ID, PID, CONTENTS, COMMENTS_DATE)
+                VALUES (:id, :pid, :contents, :comments_date)";
     $stmt = $dbh -> prepare($query);
     $stmt->bindParam(':id',$id);
     $stmt->bindParam(':pid',$pid);
@@ -25,6 +29,7 @@
 
     if(empty($contents)){
       echo "<script>alert('댓글을 입력해주세요.');</script>";
+      header("Refresh: 0; URL=phase_detail.php?pid=$pid");
     }
 
     if(!empty($contents)){
@@ -34,4 +39,16 @@
       }
     }
 
+  }else if($status=="like"){//좋아요
+    $like_count = $_POST['like_count'] + 1;
+    $query = "UPDATE PHASE SET PHASE_LIKE = '$like_count' WHERE PID = '$pid'";
+    $stmt = $dbh -> prepare($query);
+    $stmt -> execute();
+
+    echo "<script>alert('좋아요를 누르셨습니다.');</script>";
+    header("Refresh: 0; URL=phase_detail.php?pid=$pid");
+
+  }else if($status=="delete"){//댓글 삭제
+
+  }
 ?>
