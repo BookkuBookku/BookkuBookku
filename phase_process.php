@@ -50,7 +50,6 @@
 
   }else if($status=="delete"){//댓글 삭제
     $cid = $_POST['cid'];
-    $pid = $pid;
     $query = "DELETE FROM COMMENTS
                 WHERE CID = ?";
 
