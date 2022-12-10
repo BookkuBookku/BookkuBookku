@@ -11,7 +11,7 @@
   require('menu.php');
 
   $pid = $_GET['pid'];
-  $query = "SELECT PHASE.PID, BOOK.NAME BOOK_NAME, BOOK.AUTHOR, BOOK.BID, PHASE.SENTENCE, BOOK_USER.NAME, PHASE.PHASE_DATE
+  $query = "SELECT PHASE.PID, BOOK.NAME BOOK_NAME, BOOK.AUTHOR, BOOK.BID, PHASE.SENTENCE, BOOK_USER.NAME, PHASE.PHASE_DATE, PHASE.PHASE_LIKE
               FROM PHASE, BOOK, BOOK_USER
               WHERE BOOK.BID = PHASE.BID AND BOOK_USER.ID = PHASE.ID
                 AND PHASE.PID = ?";
@@ -27,6 +27,7 @@
     $sentence = $row['SENTENCE'];
     $name = $row['NAME'];
     $date = $row['PHASE_DATE'];
+    $like = $row['PHASE_LIKE'];
   ?>
     <div class="phase_box">
       <div class="phase_title">
@@ -37,10 +38,19 @@
         <div>
           <p class="writer">작성자: <?= $name?> </p>
           <p class="date">작성일: <?= $date?> </p>
+          <p class="date">좋아요: <?= $like?> </p>
+
+          <form method="POST" action="phase_process.php"><!--좋아요 !-->
+            <input type="hidden" name="pid" value="<?= $pid ?> "/>
+            <input type="hidden" name="like_count" value="<?= $like ?>"/>
+            <input type="hidden" name="status" value="like"/>
+            <button type="submit" id="submit" value="submit">좋아요</button>
+          </form>
+
         </div>
       </div>
       <p class="phase"> <?= $sentence?></a></p>
-    </div>    
+    </div>
     <?php
     }
   ?>
@@ -65,39 +75,62 @@
     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> -->
-<?php
-  $query2 = "SELECT BOOK_USER.LOGIN_ID, COMMENTS.CONTENTS, COMMENTS.COMMENTS_DATE, COMMENTS.PID FROM COMMENTS, BOOK_USER, PHASE WHERE COMMENTS.ID = BOOK_USER.ID AND PHASE.PID = COMMENTS.PID ORDER BY COMMENTS.CID";
-  $stmt2 = $conn -> prepare($query2);
-  $stmt2 -> execute();
 
-  while(!empty($row = $stmt2 -> fetch(PDO::FETCH_ASSOC))){//결과를 출력한다.
-    $pid_comment= $row['PID'];
-    if($pid == $pid_comment){
-      $login_id = $row['LOGIN_ID'];
-      $contents = $row['CONTENTS'];
-      $comments_date = $row['COMMENTS_DATE'];
-      ?>
-      <div class="comment_box">
-      <div class="comment_title">
-          <p class="user_id"><?= $login_id?> </p>
-          <p class="comment_date"> <?= $comments_date?> </p>
-      </div>
-      <div>
-          <p class="comment_contents"><?= $contents?> </p>
-      </div>
-      </div> 
-  <?php
-      }   
-    }
-  ?>
-</section>
-
-<div id="form-commentInfo">
+<div id="form-commentInfo"><!--댓글 입력창 !-->
     <form method="POST" action="phase_process.php">
-        <input id="comment-input" name="contents" placeholder="댓글을 입력해 주세요.">
+        <input maxlength = '250' id="comment-input" name="contents" placeholder="댓글을 입력해 주세요.">
         <input type="hidden" name="pid" value="<?= $pid ?> "/>
         <input type="hidden" name="id" value="<?= $id ?>"/>
+        <input type="hidden" name="status" value="comment"/>
         <button type="submit" id="submit" value="submit">등록</button>
     </div>
     </form>
 </div>
+
+<?php
+  $query = "SELECT BOOK_USER.NAME, COMMENTS.CONTENTS, COMMENTS.COMMENTS_DATE, COMMENTS.PID, BOOK_USER.ID, COMMENTS.CID
+              FROM COMMENTS, BOOK_USER, PHASE
+              WHERE COMMENTS.ID = BOOK_USER.ID
+                AND PHASE.PID = COMMENTS.PID
+                AND PHASE.PID = ?
+              ORDER BY COMMENTS.CID";
+  $stmt = $conn -> prepare($query);
+  $stmt -> execute(array($pid));
+
+  if(!empty($row = $stmt -> fetch(PDO::FETCH_ASSOC))){
+    do{//결과를 출력한다.
+      $name = $row['NAME'];
+      $contents = $row['CONTENTS'];
+      $comments_date = $row['COMMENTS_DATE'];
+      ?>
+      <div class="comment_box">
+        <div class="comment_title">
+            <p class="user_id"><?= $name?> </p>
+            <p class="comment_date"> <?= $comments_date?> </p>
+        </div>
+        <div>
+            <p class="comment_contents"><?= $contents?> </p>
+        </div>
+      </div>
+      <?php
+      $u_id = $row['ID'];
+        if($u_id==$id){ //댓글 삭제 버튼
+          $cid = $row['CID'];
+          ?>
+          <form method="POST" action="phase_process.php"><!--삭제 !-->
+            <input type="hidden" name="pid" value="<?= $cid ?> "/>
+            <input type="hidden" name="status" value="delete"/>
+            <button type="submit" id="submit" value="submit">삭제</button>
+          </form>
+          <?php
+        }
+      }while($row = $stmt -> fetch(PDO::FETCH_ASSOC));
+
+    }else{
+      ?>
+      <p> 작성된 댓글이 없습니다. </p>
+      <?php
+    }
+
+?>
+</section>
