@@ -23,3 +23,45 @@ section{
 .phase{
     font-size: larger;
 }
+#form-commentInfo{
+  padding-left: 6%;
+}
+#comment-input{
+  width: 88%;
+  height: 6%;
+}
+#submit{
+  width: 5.4%;
+  height: 6%;
+  border-radius: 7px;
+  border-color: lightgray;
+  background-color: rgb(235, 235, 235);
+}
+.comment_box{
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  margin: 10px 100px;
+}
+.comment_title{
+  display: flex;
+  justify-content: space-between;
+}
+.user_id{
+  margin: 5px 20px;
+  font-size: 19px;
+  color: #0d6efd;
+}
+.comment_date{
+  margin: 9px 20px;
+  font-size: 13px;
+}
+.comment_contents{
+  margin: 5px 20px;
+}
+#comment-input{
+  margin: 8px 0px 8px 0px;
+  padding-left: 10px;
+  border-radius: 7px;
+  border-color: lightgray;
+}
