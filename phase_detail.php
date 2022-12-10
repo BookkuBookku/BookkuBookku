@@ -14,7 +14,8 @@
   $query = "SELECT PHASE.PID, BOOK.NAME BOOK_NAME, BOOK.AUTHOR, BOOK.BID, PHASE.SENTENCE, BOOK_USER.NAME, PHASE.PHASE_DATE, PHASE.PHASE_LIKE
               FROM PHASE, BOOK, BOOK_USER
               WHERE BOOK.BID = PHASE.BID AND BOOK_USER.ID = PHASE.ID
-                AND PHASE.PID = ?";
+                AND PHASE.PID = ?
+              ORDER BY PHASE.PHASE_DATE DESC";
 
   $stmt = $conn -> prepare($query);
   $stmt -> execute(array($pid));
@@ -118,7 +119,7 @@
           $cid = $row['CID'];
           ?>
           <form method="POST" action="phase_process.php"><!--삭제 !-->
-            <input type="hidden" name="pid" value="<?= $cid ?> "/>
+            <input type="hidden" name="cid" value="<?= $cid ?> "/>
             <input type="hidden" name="status" value="delete"/>
             <button type="submit" id="submit" value="submit">삭제</button>
           </form>
