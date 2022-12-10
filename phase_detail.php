@@ -120,6 +120,7 @@
           ?>
           <form method="POST" action="phase_process.php"><!--삭제 !-->
             <input type="hidden" name="cid" value="<?= $cid ?> "/>
+            <input type="hidden" name="pid" value="<?= $pid ?> "/>
             <input type="hidden" name="status" value="delete"/>
             <button type="submit" id="submit" value="submit">삭제</button>
           </form>
