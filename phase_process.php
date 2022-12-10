@@ -57,6 +57,6 @@
     $stmt -> execute(array($cid));
     echo "<script>alert('댓글이 삭제되었습니다.');</script>";
 
-    header("Refresh: 0; URL=phase_detail.php?pid=$pid");
+    header("Refresh: 0; URL=phase_detail.php?pid=".$pid);
   }
 ?>
