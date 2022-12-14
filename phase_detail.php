@@ -39,13 +39,13 @@
         <div>
           <p class="writer">작성자: <?= $name?> </p>
           <p class="date">작성일: <?= $date?> </p>
-          <p class="date">좋아요: <?= $like?> </p>
+          <p class="like">좋아요: <?= $like?> </p>
 
           <form method="POST" action="phase_process.php"><!--좋아요 !-->
             <input type="hidden" name="pid" value="<?= $pid ?> "/>
             <input type="hidden" name="like_count" value="<?= $like ?>"/>
             <input type="hidden" name="status" value="like"/>
-            <button type="submit" id="submit" value="submit">좋아요</button>
+            <button type="submit" id="like_btn" value="submit">♥ 좋아요</button>
           </form>
 
         </div>
@@ -112,18 +112,18 @@
         <div>
             <p class="comment_contents"><?= $contents?> </p>
         </div>
-      </div>
       <?php
       $u_id = $row['ID'];
         if($u_id==$id){ //댓글 삭제 버튼
           $cid = $row['CID'];
           ?>
-          <form method="POST" action="phase_process.php"><!--삭제 !-->
+          <form method="POST" action="phase_process.php" style="margin-bottom: 0px;"><!--삭제 !-->
             <input type="hidden" name="cid" value="<?= $cid ?> "/>
             <input type="hidden" name="pid" value="<?= $pid ?> "/>
             <input type="hidden" name="status" value="delete"/>
-            <button type="submit" id="submit" value="submit">삭제</button>
+            <button type="submit" id="delete_btn" value="submit">삭제</button>
           </form>
+          </div>
           <?php
         }
       }while($row = $stmt -> fetch(PDO::FETCH_ASSOC));

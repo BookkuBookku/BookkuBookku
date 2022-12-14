@@ -9,7 +9,7 @@ section{
 .phase_title{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 2px;
 }
 .phase_title p{
     margin: 10px 0;
@@ -36,6 +36,12 @@ section{
   border-radius: 7px;
   border-color: lightgray;
   background-color: rgb(235, 235, 235);
+}
+#like_btn{
+  width: 100px;
+  border-color: gainsboro;
+  border-radius: 7px;
+  color: #606060;
 }
 .comment_box{
   padding: 10px;
@@ -64,4 +70,13 @@ section{
   padding-left: 10px;
   border-radius: 7px;
   border-color: lightgray;
+}
+#delete_btn{
+  background-color: lightgray;
+  width: 40px;
+  border-color: gainsboro;
+  border-radius: 7px;
+  margin-left: 12px;
+  font-size: x-small;
+  color: grey;
 }

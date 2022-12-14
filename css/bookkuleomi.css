@@ -33,3 +33,13 @@ html::-webkit-scrollbar {
     bottom: 50px;
     right: 50px;
 }
+.btn{
+  background-color: #00bfb9;
+  color:#ffffff; 
+  border:none; 
+}
+
+.btn:hover{
+  background-color:#00a8a3;
+  transition: 0.7s;
+}
