@@ -33,3 +33,7 @@ p {
   background-color:#00a8a3;
   transition: 0.7s;
 }
+
+.d-flex{
+  margin-bottom: 0px;
+}
