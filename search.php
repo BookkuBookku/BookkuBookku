@@ -5,7 +5,7 @@
  ?>
 
 <link href=".\css\total_book.css" rel="stylesheet" type="text/css" />
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg bg-white">
 <div class="container-fluid" style="padding: 0px 75px 0px 60px;">
   <a class="navbar-brand" style="font-size:2em;">도서 검색</a>
    <form class="d-flex" role="search" method="POST" action="search.php">
@@ -34,7 +34,7 @@
     ?>
       <div class="book_box"  OnClick="location.href ='book_detail.php?bid=<?=$bid?>'" style="cursor:pointer;">
         <div class="book_cover">
-          <p><?= $name?></p>
+          <p class="cover_title"><?= $name?></p>
         </div>
         <div>
           <p class="book_name"> <?= $name?> </p>

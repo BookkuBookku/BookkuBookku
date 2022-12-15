@@ -1,46 +1,77 @@
 .book_detail_section{
     width: 70%;
-    margin: 100px auto;
+    margin: 120px auto;
     display: flex;
 }
 .book_cover{
-    width: 240px;
-    height: 300px;
+    width: 350px;
+    height: 450px;
     background-color: aquamarine;
-    padding: 5px;
+    /* border-right: 10px solid #EBF5F5;
+    border-bottom: 7px solid #EBF5F5; */
+    box-shadow: 0 5px 18px -8px rgba(110,110,110,1);
+    padding: 20px;
     margin-bottom: 10px;
 
     text-align: center;
     word-break: keep-all;
-    font-size: larger;
+    padding-top:20px;
+    font-size:larger;
+}
+.cover_title{
+    margin-top: 20px;
+    font-size: 40px;
+    color: #373737;
 }
 .book_info_div{
-    padding: 0 50px;
-    height: 300px;
+    padding: 0 100px;
+    height: 450px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 .book_name{
-    font-size: xx-large;
+    font-size: 40px;
     color: black;
     margin-bottom: 5px;
 }
 .book_author{
-    font-size: larger;
+    font-size: 30px;
 }
 .buttons{
     display: flex;
-    width: 150px;
-    justify-content: space-between;
 }
 .buttons [type="submit"]{
-    padding: 0 20px;
-    height: 35px;
-    border-radius: 20px;
-    background-color: transparent;
+    padding: 10px 15px;
+    margin-right: 30px;
+    width: 120px;
+    border-radius: 30px;
+    border: none;  
+    font-size: 25px;
+    background-color: #DCDCDC;
 }
-.cover_title{
-    margin-top: 20px;
-    font-size: x-large;
+.read_btn:hover{
+    background-color: #4f9ea3;
+}
+.heart_btn:hover{
+    background-color: #d88a8a;
+}
+section{
+
+    animation: fadein 1s ease forwards;
+}
+
+@keyframes fadein {
+    from {
+        transform: translateY(20%);
+        visibility: visible;
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+body{
+    overflow: hidden;
 }

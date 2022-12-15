@@ -23,12 +23,20 @@ textarea{
     border-radius: 10px;
     min-width: 600px;
     width: 100%;
-    padding: 10px;
-    font-size: 20px;
+    padding: 20px;
+    font-size: 22px;
 }
 .submit{
     float: right;
-    width:100px;
-    height: 40px;
-    border-radius: 20px;
+    padding: 10px 15px;
+    width: 150px;
+    border-radius: 30px;
+    border: none;  
+    font-size: 22px;
+    background: linear-gradient(to right, rgb(77, 211, 206), rgb(124, 219, 187));
+    box-shadow: 0 5px 10px -8px rgba(10,10,10,1);
+}
+.submit:hover{
+    background: linear-gradient(to right, rgb(67, 167, 164), rgb(67, 208, 161));
+
 }
