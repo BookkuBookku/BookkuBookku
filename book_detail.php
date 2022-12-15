@@ -31,14 +31,14 @@
       <div class="buttons">
         <form method="POST" action="reading.php"><!-- 읽기 -->
           <input type="hidden" name="bid" value="<?= $bid ?>"/>
-          <input type="submit" value="읽기"/>
+          <input type="submit" value="읽기" class="read_btn"/>
         </form>
 
         <form method="POST" action="book_process.php"><!-- 찜 -->
           <input type="hidden" name="bid" value="<?= $bid ?> "/>
           <input type="hidden" name="id" value="<?= $id ?>"/>
           <input type="hidden" name="status" value="like"/>
-          <p> <input type="submit" value="찜"/> </p>
+          <p> <input type="submit" value="찜" class="heart_btn"/> </p>
         </form>
       </div> 
     </div>

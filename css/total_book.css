@@ -7,21 +7,29 @@
 .book_box{
     margin: 20px;
 }
+.book_box:hover{
+    filter: brightness(90%); 
+}
 .book_cover{
-    width: 150px;
-    height: 200px;
+    width: 170px;
+    height: 220px;
     background-color: aquamarine;
-    padding: 5px;
+    padding: 10px;
     margin-bottom: 10px;
 
     text-align: center;
     word-break: keep-all;
     font-size: larger;
+    box-shadow: 0 5px 18px -8px rgba(150,150,150,1);
 }
 .book_name{
     font-size: larger;
     color: black;
     margin-bottom: 5px;
+    text-align: center;
+}
+.book_author{
+    text-align: center;
 }
 .cover_title{
     margin-top: 15px;
@@ -35,4 +43,22 @@
 .btn:hover{
   background-color:#00a8a3;
   transition: 0.7s;
+}
+section{
+    animation: fadein 1s ease forwards;
+}
+
+@keyframes fadein {
+    from {
+        transform: translateY(5%);
+        visibility: visible;
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+body{
+    overflow: hidden;
 }

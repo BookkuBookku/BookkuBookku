@@ -56,7 +56,7 @@
     }
   ?>
   <div id="disqus_thread"></div>
-</section>
+
 
 <!-- <script>
     /**
@@ -106,31 +106,33 @@
       ?>
       <div class="comment_box">
         <div class="comment_title">
-            <p class="user_id"><?= $name?> </p>
-            <p class="comment_date"> <?= $comments_date?> </p>
+          <p class="user_id"><?= $name?> </p>
+          <p class="comment_date"> <?= $comments_date?> </p>
         </div>
         <div>
-            <p class="comment_contents"><?= $contents?> </p>
-        </div>
-      <?php
-      $u_id = $row['ID'];
-        if($u_id==$id){ //댓글 삭제 버튼
-          $cid = $row['CID'];
-          ?>
-          <form method="POST" action="phase_process.php" style="margin-bottom: 0px;"><!--삭제 !-->
-            <input type="hidden" name="cid" value="<?= $cid ?> "/>
-            <input type="hidden" name="pid" value="<?= $pid ?> "/>
-            <input type="hidden" name="status" value="delete"/>
-            <button type="submit" id="delete_btn" value="submit">삭제</button>
-          </form>
-          </div>
+          <p class="comment_contents"><?= $contents?> </p>
+          
           <?php
+            $u_id = $row['ID'];
+            if($u_id==$id){ //댓글 삭제 버튼
+              $cid = $row['CID'];
+            ?>
+            <form method="POST" action="phase_process.php" class="delete" ><!--삭제 !-->
+              <input type="hidden" name="cid" value="<?= $cid ?> "/>
+              <input type="hidden" name="pid" value="<?= $pid ?> "/>
+              <input type="hidden" name="status" value="delete"/>
+              <button type="submit" id="delete_btn" value="submit">삭제</button>
+            </form>
+          
+        </div>
+      </div>
+      <?php
         }
       }while($row = $stmt -> fetch(PDO::FETCH_ASSOC));
 
     }else{
       ?>
-      <p> 작성된 댓글이 없습니다. </p>
+      <p class="noComment"> 작성된 댓글이 없습니다. </p>
       <?php
     }
 

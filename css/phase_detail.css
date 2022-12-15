@@ -1,5 +1,5 @@
 section{
-    padding: 50px 50px;
+    padding: 50px 100px;
 }
 .book_name{
     font-size: x-large;
@@ -18,22 +18,23 @@ section{
     padding: 30px;
     background-color: #f8f9fa;
     border-radius: 10px;
-    margin: 20px 50px 100px 50px;
+    margin: 20px 0 100px 0;
 }
 .phase{
     font-size: larger;
 }
 #form-commentInfo{
-  padding-left: 6%;
+  width: 100%;
 }
 #comment-input{
-  width: 88%;
+  width: calc(100% - 100px);
   height: 6%;
 }
 #submit{
-  width: 5.4%;
+  width: 85px;
   height: 6%;
-  border-radius: 7px;
+  margin-left:10px;
+  border-radius: 10px;
   border-color: lightgray;
   background-color: rgb(235, 235, 235);
 }
@@ -47,7 +48,7 @@ section{
   padding: 10px;
   background-color: #f8f9fa;
   border-radius: 10px;
-  margin: 10px 100px;
+  margin: 20px 0;
 }
 .comment_title{
   display: flex;
@@ -73,10 +74,13 @@ section{
 }
 #delete_btn{
   background-color: lightgray;
-  width: 40px;
   border-color: gainsboro;
   border-radius: 7px;
-  margin-left: 12px;
-  font-size: x-small;
+  font-size: small;
   color: grey;
+  float: right;
+}
+.delete{
+  height: 20px;
+  margin: 10px;
 }

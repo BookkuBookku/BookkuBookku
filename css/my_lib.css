@@ -14,15 +14,19 @@ section{
     margin: 20px;
 }
 .book_cover{
-    width: 150px;
-    height: 200px;
+    width: 170px;
+    height: 220px;
     background-color: aquamarine;
+    box-shadow: 0 5px 18px -8px rgba(150,150,150,1);
     padding: 5px;
     margin-bottom: 10px;
 
     text-align: center;
     word-break: keep-all;
     font-size: larger;
+}
+.book_cover:hover{
+    filter: brightness(90%);
 }
 .book_name{
     font-size: larger;

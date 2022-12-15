@@ -6,7 +6,7 @@ section{
     height: calc(100vh - 230px);
     background-color: #f8f9fa;
     border-radius: 20px;
-    padding: 50px;
+    padding: 80px 70px;
     margin-bottom: 30px;
 }
  
@@ -18,10 +18,14 @@ html::-webkit-scrollbar {
     text-decoration: none;
 }
 .phase{
-    margin-top: 50px;
+    position: absolute;
+    top: 50%;
+    transform: translate(0%, -50%);
+    width: 90%;
     font-size: x-large;
     color: rgb(69, 69, 69);
     word-break:keep-all;
+    text-align: center;
 }
 .comment{
     font-size: x-large;
@@ -30,8 +34,8 @@ html::-webkit-scrollbar {
     float:right;
 
     position: absolute;
-    bottom: 50px;
-    right: 50px;
+    bottom: 70px;
+    right: 70px;
 }
 .btn{
   background-color: #00bfb9;

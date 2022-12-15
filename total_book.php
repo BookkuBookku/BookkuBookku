@@ -1,7 +1,7 @@
 <?php
  require('menu.php');
 ?>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link href=".\css\total_book.css" rel="stylesheet" type="text/css" />
 <nav class="navbar bg-white">
   <div class="container-fluid" style="padding: 0px 75px 0px 60px;">
@@ -40,4 +40,8 @@
   }
   ?>
 </section>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
 
+  });
+</script>
