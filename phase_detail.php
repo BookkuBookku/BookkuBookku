@@ -122,12 +122,11 @@
               <input type="hidden" name="pid" value="<?= $pid ?> "/>
               <input type="hidden" name="status" value="delete"/>
               <button type="submit" id="delete_btn" value="submit">삭제</button>
-            </form>
-          
+            </form>  
+          <?php }?>        
         </div>
       </div>
       <?php
-        }
       }while($row = $stmt -> fetch(PDO::FETCH_ASSOC));
 
     }else{
